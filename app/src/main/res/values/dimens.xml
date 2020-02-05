@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="logo_width">200dp</dimen>
+    <dimen name="logo_height">60dp</dimen>
+
+    <dimen name="view_width">330dp</dimen>
+
+    <dimen name="pri_button_width">250dp</dimen>
+    <dimen name="pri_button_height">130dp</dimen>
+
+    <dimen name="button_width">130dp</dimen>
+    <dimen name="button_height">130dp</dimen>
+
+    <dimen name="icon_size">40dp</dimen>
+
+    <dimen name="vertical_padding">16dp</dimen>
+    <dimen name="horizontal_padding">16dp</dimen>
+
+    <dimen name="home_margin">0dp</dimen>
+
+    <dimen name="space_s">5dp</dimen>
+    <dimen name="space_m">10dp</dimen>
+    <dimen name="space_l">16dp</dimen>
+    <dimen name="locate_height">220dp</dimen>
+    <dimen name="videoPlayer">400dp</dimen>
+
+    <dimen name="worker_margin">26dp</dimen>
+
+    <dimen name="adaptive_view_top_margin">980dp</dimen>
+    <dimen name="adaptive_item_top_margin">18dp</dimen>
+    <dimen name="adaptive_item_start_margin">180dp</dimen>
+
+
+    <dimen name="tch_view_top_margin">895dp</dimen>
+    <dimen name="tch_view_item_top_margin">7dp</dimen>
+    <dimen name="tch_view_item_start_margin">120dp</dimen>
+
+    <dimen name="tg_view_top_margin">953dp</dimen>
+    <dimen name="tg_view_item_top_margin">32dp</dimen>
+    <dimen name="tg_view_item_start_margin">110dp</dimen>
+
+
+    <dimen name="view_item_width">300dp</dimen>
+    <dimen name="view_item_height">20dp</dimen>
+    <dimen name="view_main_item_width">505dp</dimen>
+
+</resources>

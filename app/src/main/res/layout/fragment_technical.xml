@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/horizontal_padding"
+    android:paddingEnd="@dimen/horizontal_padding"
+    android:paddingTop="@dimen/vertical_padding"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".fragments.HomeFragment">
+
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:src="@drawable/img_logo"
+        android:layout_margin="@dimen/space_m"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/logo_width"
+        android:layout_height="@dimen/logo_height"/>
+
+
+    <RelativeLayout
+        android:id="@+id/buttonView"
+        android:layout_marginBottom="@dimen/space_l"
+        android:layout_below="@id/imgLogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btnHome"
+            android:src="@drawable/btn_home"
+            android:layout_margin="@dimen/space_m"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+        <ImageView
+            android:id="@+id/btnNext"
+            android:src="@drawable/btn_next"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/space_m"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:src="@drawable/btn_back"
+            android:layout_toStartOf="@id/btnNext"
+            android:layout_margin="@dimen/space_m"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/btnAdaptive"
+        android:src="@drawable/img_technical"
+        android:layout_below="@id/buttonView"
+        android:layout_margin="@dimen/space_m"
+        android:layout_alignParentStart="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <View
+        android:id="@+id/viewAgile"
+        android:layout_marginTop="@dimen/tch_view_top_margin"
+        android:layout_marginStart="@dimen/tch_view_item_start_margin"
+        android:background="@color/itemBg"
+        android:layout_width="@dimen/view_main_item_width"
+        android:layout_height="@dimen/view_item_height"/>
+
+    <View
+        android:id="@+id/viewCyberSecurity"
+        android:layout_below="@id/viewAgile"
+
+        android:layout_marginTop="@dimen/tch_view_item_top_margin"
+        android:layout_marginStart="@dimen/tch_view_item_start_margin"
+        android:background="@color/itemBg"
+        android:layout_width="@dimen/view_item_width"
+        android:layout_height="@dimen/view_item_height"/>
+
+    <View
+        android:id="@+id/viewDataProtection"
+        android:layout_below="@id/viewCyberSecurity"
+
+        android:layout_marginTop="@dimen/tch_view_item_top_margin"
+        android:layout_marginStart="@dimen/tch_view_item_start_margin"
+        android:background="@color/itemBg"
+        android:layout_width="@dimen/view_item_width"
+        android:layout_height="@dimen/view_item_height"/>
+
+    <View
+        android:id="@+id/viewFoundation"
+        android:layout_below="@id/viewDataProtection"
+
+        android:layout_marginTop="@dimen/tch_view_item_top_margin"
+        android:layout_marginStart="@dimen/tch_view_item_start_margin"
+        android:background="@color/itemBg"
+        android:layout_width="@dimen/view_item_width"
+        android:layout_height="@dimen/view_item_height"/>
+
+    <View
+        android:id="@+id/viewOracle"
+        android:layout_below="@id/viewFoundation"
+
+        android:layout_marginTop="@dimen/tch_view_item_top_margin"
+        android:layout_marginStart="@dimen/tch_view_item_start_margin"
+        android:background="@color/itemBg"
+        android:layout_width="@dimen/view_item_width"
+        android:layout_height="@dimen/view_item_height"/>
+
+    <View
+        android:id="@+id/viewWorkSpace"
+        android:layout_below="@id/viewOracle"
+
+        android:layout_marginTop="@dimen/tch_view_item_top_margin"
+        android:layout_marginStart="@dimen/tch_view_item_start_margin"
+        android:background="@color/itemBg"
+        android:layout_width="@dimen/view_item_width"
+        android:layout_height="@dimen/view_item_height"/>
+
+    <View
+        android:id="@+id/viewSecurity"
+        android:layout_below="@id/viewWorkSpace"
+
+        android:layout_marginTop="@dimen/tch_view_item_top_margin"
+        android:layout_marginStart="@dimen/tch_view_item_start_margin"
+        android:background="@color/itemBg"
+        android:layout_width="@dimen/view_item_width"
+        android:layout_height="@dimen/view_item_height"/>
+
+</RelativeLayout>

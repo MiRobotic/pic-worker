@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/horizontal_padding"
+    android:paddingEnd="@dimen/horizontal_padding"
+    android:paddingTop="@dimen/vertical_padding"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".fragments.HomeFragment">
+
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:src="@drawable/img_logo"
+        android:layout_margin="@dimen/space_m"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/logo_width"
+        android:layout_height="@dimen/logo_height"/>
+
+
+    <RelativeLayout
+        android:id="@+id/buttonView"
+        android:layout_marginBottom="@dimen/space_l"
+        android:layout_below="@id/imgLogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btnHome"
+            android:src="@drawable/btn_home"
+            android:layout_margin="@dimen/space_m"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+        <ImageView
+            android:id="@+id/btnNext"
+            android:src="@drawable/btn_next"
+            android:visibility="invisible"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/space_m"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:src="@drawable/btn_back"
+            android:layout_toStartOf="@id/btnNext"
+            android:layout_margin="@dimen/space_m"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_below="@id/buttonView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:src="@drawable/img_locate_us_1"
+                android:scaleType="fitStart"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="@dimen/space_m"
+                android:layout_marginStart="@dimen/space_m"
+                android:layout_marginEnd="@dimen/space_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:src="@drawable/img_locate_us_2"
+                android:scaleType="fitStart"
+                android:adjustViewBounds="true"
+                android:layout_marginStart="@dimen/space_m"
+                android:layout_marginEnd="@dimen/space_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

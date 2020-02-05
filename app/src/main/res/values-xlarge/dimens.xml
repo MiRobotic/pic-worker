@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="logo_width">680dp</dimen>
+    <dimen name="logo_height">144dp</dimen>
+    <dimen name="view_width">740dp</dimen>
+    <dimen name="pri_button_width">600dp</dimen>
+    <dimen name="pri_button_height">312dp</dimen>
+    <dimen name="button_width">312dp</dimen>
+    <dimen name="button_height">312dp</dimen>
+    <dimen name="icon_size">96dp</dimen>
+    <dimen name="space_s">12dp</dimen>
+    <dimen name="space_m">24dp</dimen>
+    <dimen name="space_l">42dp</dimen>
+    <dimen name="locate_height">1488dp</dimen>
+
+    <dimen name="vertical_padding">40dp</dimen>
+    <dimen name="horizontal_padding">40dp</dimen>
+
+    <dimen name="worker_margin">64dp</dimen>
+
+    <dimen name="home_margin">60dp</dimen>
+
+    <dimen name="tch_view_top_margin">955dp</dimen>
+    <dimen name="tch_view_item_top_margin">31dp</dimen>
+    <dimen name="tch_view_item_start_margin">180dp</dimen>
+
+    <dimen name="tg_view_top_margin">1062dp</dimen>
+    <dimen name="tg_view_item_top_margin">56dp</dimen>
+    <dimen name="tg_view_item_start_margin">110dp</dimen>
+
+    <dimen name="adaptive_view_top_margin">998dp</dimen>
+    <dimen name="adaptive_item_top_margin">35dp</dimen>
+    <dimen name="adaptive_item_start_margin">180dp</dimen>
+
+
+    <dimen name="view_item_width">450dp</dimen>
+    <dimen name="view_item_height">20dp</dimen>
+    <dimen name="view_main_item_width">600dp</dimen>
+
+
+    <!--    <dimen name="logo_width">500dp</dimen>-->
+<!--    <dimen name="logo_height">150dp</dimen>-->
+
+<!--    <dimen name="view_width">825dp</dimen>-->
+
+<!--    <dimen name="pri_button_width">625dp</dimen>-->
+<!--    <dimen name="pri_button_height">390dp</dimen>-->
+
+<!--    <dimen name="button_width">390dp</dimen>-->
+<!--    <dimen name="button_height">390dp</dimen>-->
+
+<!--    <dimen name="icon_size">100dp</dimen>-->
+
+<!--    <dimen name="space_s">13dp</dimen>-->
+<!--    <dimen name="space_m">25dp</dimen>-->
+<!--    <dimen name="space_l">40dp</dimen>-->
+<!--    <dimen name="locate_height">1550dp</dimen>-->
+
+
+</resources>

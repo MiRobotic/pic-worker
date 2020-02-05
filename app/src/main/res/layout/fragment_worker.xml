@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:focusable="true"
+    tools:context=".fragments.HomeFragment">
+
+
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:src="@drawable/img_logo"
+        android:layout_margin="@dimen/worker_margin"
+        android:layout_width="@dimen/logo_width"
+        android:layout_height="@dimen/logo_height"/>
+
+
+    <RelativeLayout
+        android:id="@+id/buttonView"
+        android:layout_marginStart="@dimen/worker_margin"
+        android:layout_marginEnd="@dimen/worker_margin"
+        android:layout_marginBottom="@dimen/space_l"
+        android:layout_below="@id/imgLogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btnHome"
+            android:src="@drawable/btn_home"
+            android:layout_margin="@dimen/space_m"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+        <ImageView
+            android:id="@+id/btnNext"
+            android:src="@drawable/btn_next"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            android:layout_margin="@dimen/space_m"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:src="@drawable/btn_back"
+            android:visibility="invisible"
+            android:layout_toStartOf="@id/btnNext"
+            android:layout_margin="@dimen/space_m"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/videoLayout"
+        android:layout_below="@id/buttonView"
+        android:layout_marginStart="@dimen/worker_margin"
+        android:layout_marginEnd="@dimen/worker_margin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/videoPlayer">
+
+        <VideoView
+            android:id="@+id/videoPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btnAdaptive"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_worker_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
