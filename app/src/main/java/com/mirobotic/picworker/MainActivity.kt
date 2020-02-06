@@ -16,6 +16,9 @@ import com.csjbot.cosclient.entity.MessagePacket
 import com.csjbot.cosclient.listener.EventListener
 import com.mirobotic.picworker.fragments.*
 import com.mirobotic.picworker.services.RobotService
+import com.mirobotic.picworker.speech.ISpeechSpeak
+import com.mirobotic.picworker.speech.OnSpeakListener
+import com.mirobotic.picworker.speech.SpeechFactory
 import com.mirobotic.picworker.utils.MyDateTimeUtils
 import com.mirobotic.picworker.utils.Request
 import org.json.JSONObject
@@ -61,6 +64,8 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
             robotService = robotServiceBinder.service
             robotService?.connectRobot(eventListener, failedListener, 60002)
 
+            sayGreetings(System.currentTimeMillis())
+
         }
 
         override fun onServiceDisconnected(name: ComponentName) {
@@ -85,13 +90,44 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
     override fun onStart() {
         super.onStart()
 
-        sayGreetings(System.currentTimeMillis())
+        val time = System.currentTimeMillis()
+
+        val diff = time - GREET_TIME
+
+        Log.e(TAG, "onStart! time diff $diff")
+
+        if (diff >  GREET_DELAY) {
+            sayGreetings(time)
+        }
     }
 
     private fun sayGreetings(time: Long) {
 
         val msg = "Hello, Good ${MyDateTimeUtils.getGreetingMessage()}."
-        speak(msg)
+
+        val speak = SpeechFactory.createSpeech(context, SpeechFactory.SpeechType.GOOGLE)
+
+        if(speak.isSpeaking) {
+            Toast.makeText(context, "Already Speaking!", Toast.LENGTH_SHORT).show()
+            Log.e(TAG,"sayGreetings: Already Speaking!")
+            return
+        }
+
+        speak.startSpeaking(msg, object : OnSpeakListener {
+
+            override fun onSpeakBegin() {
+                Toast.makeText(context, "Speaking!", Toast.LENGTH_SHORT).show()
+                Log.e(TAG,"sayGreetings: Speaking")
+            }
+
+            override fun onCompleted(i: Int) {
+                Toast.makeText(context, "Completed!", Toast.LENGTH_SHORT).show()
+                Log.e(TAG,"sayGreetings: Completed in $i")
+            }
+
+        })
+
+        //speak(msg)
 
         GREET_TIME = time
 
@@ -166,19 +202,21 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
                         "Speech Stop Recognition"
                     )
                     Request.FACE_DETECT_NOTIFICATION -> {
-                        Log.e(TAG, "Face Detected!")
 
                         val time = System.currentTimeMillis()
 
-                        if ((GREET_TIME - time) >  GREET_DELAY) {
+                        val diff = time - GREET_TIME
+
+                        Log.e(TAG, "Face Detected! time diff $diff")
+
+                        if (diff >  GREET_DELAY) {
                             sayGreetings(time)
                         }
 
-
                     }
                     Request.FACE_RECOG_NOTIFICATION -> {
-                    }
 
+                    }
                     Request.SPEECH_TO_TEXT_NOTIFICATION -> {
                         Log.d(TAG, json)
                         try {
