@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.IBinder
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
+import android.speech.tts.Voice
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import com.csjbot.cosclient.entity.MessagePacket
 import com.csjbot.cosclient.listener.EventListener
 import com.mirobotic.picworker.fragments.*
 import com.mirobotic.picworker.services.RobotService
+import com.mirobotic.picworker.speech.GoogleSpechImpl
 import com.mirobotic.picworker.speech.ISpeechSpeak
 import com.mirobotic.picworker.speech.OnSpeakListener
 import com.mirobotic.picworker.speech.SpeechFactory
@@ -26,6 +28,7 @@ import com.mirobotic.picworker.utils.Request
 import org.greenrobot.eventbus.EventBus
 import org.json.JSONObject
 import java.util.*
+import kotlin.collections.HashSet
 
 
 class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
@@ -92,10 +95,44 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
             TextToSpeech.OnInitListener {
 
                 if(it != TextToSpeech.ERROR) {
-                    text2Speech.language = Locale.ENGLISH
+//                    text2Speech.language = Locale.ENGLISH
                     text2Speech.setOnUtteranceProgressListener(onSpeakListener)
                     text2Speech.setPitch(0.7f)
                     text2Speech.setSpeechRate(0.8f)
+
+                    val features = HashSet<String>()
+                    features.add("female")
+
+                    val list = text2Speech.voices
+
+                    var voice: Voice? = null
+                    if (list != null && list.size > 0) {
+
+                        for (lang in list) {
+                            Log.d(TAG,"voice: lang: $lang")
+
+                            if (lang.name == "en-us-x-sfg#female_1-local") {
+                                voice = lang
+                                Log.e(TAG,"voice: ${voice.name}")
+                                break
+                            }
+
+                        }
+
+                    }else {
+                        Log.e(TAG,"voice: list is empty")
+                    }
+
+                    if (voice == null) {
+
+                        voice = Voice("en-us-x-sfg#female_1-local", Locale.ENGLISH
+                            , 400, 200, false, features )
+                        Log.e(TAG,"voice: def voice")
+
+                    }
+
+                    text2Speech.voice = voice
+
                 }
 
                 sayGreetings(System.currentTimeMillis())
@@ -146,6 +183,47 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
 
         val msg = "Hello, Good ${MyDateTimeUtils.getGreetingMessage()}. Welcome to the NTUC Learning"
 
+
+        /*
+        val speech = GoogleSpechImpl.newInstance(context)
+
+        if(speech.isSpeaking) {
+            Toast.makeText(context, "Already Speaking!", Toast.LENGTH_SHORT).show()
+            Log.e(TAG,"sayGreetings: Already Speaking!")
+            return
+        }
+
+        val list = speech.getSpeakerNames("english", "us" )
+
+        if (list != null) {
+
+            for (lang in list) {
+                Log.d(TAG,"sayGreetings: lang: $lang")
+            }
+
+        }else {
+            Log.e(TAG,"sayGreetings: list is empty")
+        }
+
+        speech.startSpeaking(msg, object : OnSpeakListener {
+
+            override fun onSpeakBegin() {
+                EventBus.getDefault().post(VideoPlayerFragment.Companion.Player.PAUSE)
+                Toast.makeText(context, "Speaking!", Toast.LENGTH_SHORT).show()
+                Log.e(TAG,"sayGreetings: Speaking")
+            }
+
+            override fun onCompleted(i: Int) {
+                EventBus.getDefault().post(VideoPlayerFragment.Companion.Player.RESUME)
+                Toast.makeText(context, "Completed!", Toast.LENGTH_SHORT).show()
+                Log.e(TAG,"sayGreetings: Completed in $i")
+            }
+
+        })
+
+         */
+
+
         /*
         val speak = SpeechFactory.createSpeech(context, SpeechFactory.SpeechType.GOOGLE)
 
@@ -155,25 +233,33 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
             return
         }
 
+        speak.setLanguage(Locale.ENGLISH)
+
+        val res =  speak.setSpeakerName("")
+
         speak.startSpeaking(msg, object : OnSpeakListener {
 
             override fun onSpeakBegin() {
+                EventBus.getDefault().post(VideoPlayerFragment.Companion.Player.PAUSE)
                 Toast.makeText(context, "Speaking!", Toast.LENGTH_SHORT).show()
                 Log.e(TAG,"sayGreetings: Speaking")
             }
 
             override fun onCompleted(i: Int) {
+                EventBus.getDefault().post(VideoPlayerFragment.Companion.Player.RESUME)
                 Toast.makeText(context, "Completed!", Toast.LENGTH_SHORT).show()
                 Log.e(TAG,"sayGreetings: Completed in $i")
             }
 
         })
 
+
+
          */
 
         text2Speech.speak(msg, TextToSpeech.QUEUE_FLUSH, null, "")
 
-        //speak(msg)
+        speak(msg)
 
         GREET_TIME = time
 

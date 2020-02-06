@@ -119,21 +119,25 @@ public class GoogleSpechImpl implements ISpeechSpeak {
      */
     @Override
     public ArrayList<String> getSpeakerNames(@NonNull String language, String country) {
+
         Set<Voice> voiceSet = mTts.getVoices();
+
         ArrayList<String> voiceList = new ArrayList<>();
 
-        for (Voice voice : voiceSet) {
-            // 如果 language =  getLocale().getLanguage()，并且 country 为空，就添加到list
-            // 如果 language =  getLocale().getLanguage()，并且 country 不为空 再判断 country
-            if (voice.getLocale().getLanguage().equalsIgnoreCase(language)
-                    && voice.getName().contains("local")
-                    && !voice.isNetworkConnectionRequired()) {
-                if (!TextUtils.isEmpty(country)) {
-                    if (voice.getLocale().getCountry().equalsIgnoreCase(country)) {
+        if (voiceSet != null) {
+            for (Voice voice : voiceSet) {
+                // 如果 language =  getLocale().getLanguage()，并且 country 为空，就添加到list
+                // 如果 language =  getLocale().getLanguage()，并且 country 不为空 再判断 country
+                if (voice.getLocale().getLanguage().equalsIgnoreCase(language)
+                        && voice.getName().contains("local")
+                        && !voice.isNetworkConnectionRequired()) {
+                    if (!TextUtils.isEmpty(country)) {
+                        if (voice.getLocale().getCountry().equalsIgnoreCase(country)) {
+                            voiceList.add(voice.getName());
+                        }
+                    } else {
                         voiceList.add(voice.getName());
                     }
-                } else {
-                    voiceList.add(voice.getName());
                 }
             }
         }
