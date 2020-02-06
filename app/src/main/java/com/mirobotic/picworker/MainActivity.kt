@@ -487,6 +487,7 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
 
     override fun onDestroy() {
         super.onDestroy()
+        text2Speech.shutdown()
         unbindService(robotConnection)
     }
 }
