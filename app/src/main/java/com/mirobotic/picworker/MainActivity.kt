@@ -7,6 +7,8 @@ import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
+import android.speech.tts.TextToSpeech
+import android.speech.tts.UtteranceProgressListener
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -21,7 +23,9 @@ import com.mirobotic.picworker.speech.OnSpeakListener
 import com.mirobotic.picworker.speech.SpeechFactory
 import com.mirobotic.picworker.utils.MyDateTimeUtils
 import com.mirobotic.picworker.utils.Request
+import org.greenrobot.eventbus.EventBus
 import org.json.JSONObject
+import java.util.*
 
 
 class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
@@ -39,6 +43,8 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
         const val GREET_DELAY = 30000
 
     }
+
+    private lateinit var text2Speech: TextToSpeech
 
     private var context: Context? = null
     private var robotService: RobotService? = null
@@ -64,7 +70,6 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
             robotService = robotServiceBinder.service
             robotService?.connectRobot(eventListener, failedListener, 60002)
 
-            sayGreetings(System.currentTimeMillis())
 
         }
 
@@ -83,7 +88,43 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
             showHome()
         }
 
+        text2Speech = TextToSpeech(context,
+            TextToSpeech.OnInitListener {
+
+                if(it != TextToSpeech.ERROR) {
+                    text2Speech.language = Locale.ENGLISH
+                    text2Speech.setOnUtteranceProgressListener(onSpeakListener)
+                    text2Speech.setPitch(0.7f)
+                    text2Speech.setSpeechRate(0.8f)
+                }
+
+                sayGreetings(System.currentTimeMillis())
+            })
+
         init()
+
+    }
+
+    private val onSpeakListener = object : UtteranceProgressListener() {
+
+        override fun onDone(utteranceId: String?) {
+
+            EventBus.getDefault().post(VideoPlayerFragment.Companion.Player.RESUME)
+
+        }
+
+        override fun onError(utteranceId: String?) {
+
+            EventBus.getDefault().post(VideoPlayerFragment.Companion.Player.RESUME)
+
+        }
+
+        override fun onStart(utteranceId: String?) {
+
+            EventBus.getDefault().post(VideoPlayerFragment.Companion.Player.PAUSE)
+
+
+        }
 
     }
 
@@ -103,8 +144,9 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
 
     private fun sayGreetings(time: Long) {
 
-        val msg = "Hello, Good ${MyDateTimeUtils.getGreetingMessage()}."
+        val msg = "Hello, Good ${MyDateTimeUtils.getGreetingMessage()}. Welcome to the NTUC Learning"
 
+        /*
         val speak = SpeechFactory.createSpeech(context, SpeechFactory.SpeechType.GOOGLE)
 
         if(speak.isSpeaking) {
@@ -126,6 +168,10 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
             }
 
         })
+
+         */
+
+        text2Speech.speak(msg, TextToSpeech.QUEUE_FLUSH, null, "")
 
         //speak(msg)
 

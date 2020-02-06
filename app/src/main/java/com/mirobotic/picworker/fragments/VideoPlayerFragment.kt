@@ -3,18 +3,18 @@ package com.mirobotic.picworker.fragments
 
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.MediaController
-import android.widget.VideoView
 
 import com.mirobotic.picworker.R
 import kotlinx.android.synthetic.main.fragment_video_player.*
-import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.greenrobot.eventbus.EventBus
 
 /**
  * A simple [Fragment] subclass.
@@ -23,6 +23,11 @@ class VideoPlayerFragment : Fragment() {
 
     companion object {
         var stopPosition = 0
+
+        enum class Player{
+            PAUSE,
+            RESUME
+        }
     }
 
     override fun onCreateView(
@@ -79,6 +84,31 @@ class VideoPlayerFragment : Fragment() {
         if (pos != null) {
             stopPosition = pos
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: Player) {
+
+        Log.e(tag,"onMessageEvent ${event.name}")
+
+        if (event == Player.PAUSE) {
+            onPause()
+        }else {
+            Handler().postDelayed({
+                onResume()
+            },500)
+        }
+
     }
 
 
