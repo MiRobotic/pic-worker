@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
                         for (lang in list) {
                             Log.d(TAG,"voice: lang: $lang")
 
-                            if (lang.name == "en-gb-x-fis#female_1-local") {
+                            if (lang.name == "en-in-x-cxx#female_2-local") {
                                 voice = lang
                                 Log.e(TAG,"voice: ${voice.name}")
                                 break
