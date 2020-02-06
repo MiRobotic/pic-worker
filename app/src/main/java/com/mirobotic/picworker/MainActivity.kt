@@ -257,6 +257,8 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
 
                         if (diff >  GREET_DELAY) {
                             sayGreetings(time)
+                        }else {
+                            GREET_TIME = time
                         }
 
                     }
