@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
 
                     if (voice == null) {
 
-                        voice = Voice("en-us-x-sfg#female_1-local", Locale.ENGLISH
+                        voice = Voice("en-in-x-cxx#female_2-local", Locale.ENGLISH
                             , 400, 200, false, features )
                         Log.e(TAG,"voice: def voice")
 
@@ -180,7 +180,7 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
 
     private fun sayGreetings(time: Long) {
 
-        val msg = "Hello, Good ${MyDateTimeUtils.getGreetingMessage()}. Welcome to the NTUC Learning"
+        val msg = "Welcome to NTUC Learning Hub."
 
 
         /*
@@ -258,7 +258,7 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
 
         text2Speech.speak(msg, TextToSpeech.QUEUE_FLUSH, null, "")
 
-        speak(msg)
+//        speak(msg)
 
         GREET_TIME = time
 
@@ -487,6 +487,7 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
 
     override fun onDestroy() {
         super.onDestroy()
+        text2Speech.shutdown()
         unbindService(robotConnection)
     }
 }
