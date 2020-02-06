@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
 
                     if (voice == null) {
 
-                        voice = Voice("en-us-x-sfg#female_1-local", Locale.ENGLISH
+                        voice = Voice("en-in-x-cxx#female_2-local", Locale.ENGLISH
                             , 400, 200, false, features )
                         Log.e(TAG,"voice: def voice")
 
