@@ -180,7 +180,7 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
 
     private fun sayGreetings(time: Long) {
 
-        val msg = "Hello, Good ${MyDateTimeUtils.getGreetingMessage()}. Welcome to the NTUC Learning"
+        val msg = "Welcome to NTUC Learning Hub."
 
 
         /*
@@ -258,7 +258,7 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
 
         text2Speech.speak(msg, TextToSpeech.QUEUE_FLUSH, null, "")
 
-        speak(msg)
+//        speak(msg)
 
         GREET_TIME = time
 
