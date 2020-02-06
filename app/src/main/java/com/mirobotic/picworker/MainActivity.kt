@@ -168,15 +168,15 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
     override fun onStart() {
         super.onStart()
 
-        val time = System.currentTimeMillis()
-
-        val diff = time - GREET_TIME
-
-        Log.e(TAG, "onStart! time diff $diff")
-
-        if (diff >  GREET_DELAY) {
-            sayGreetings(time)
-        }
+//        val time = System.currentTimeMillis()
+//
+//        val diff = time - GREET_TIME
+//
+//        Log.e(TAG, "onStart! time diff $diff")
+//
+//        if (diff >  GREET_DELAY) {
+//            sayGreetings(time)
+//        }
     }
 
     private fun sayGreetings(time: Long) {
