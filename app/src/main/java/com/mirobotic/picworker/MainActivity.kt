@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
         private var GREET_TIME = 0L
 
         const val GREET_DELAY = 30000
-
     }
 
     private lateinit var text2Speech: TextToSpeech
@@ -97,8 +96,8 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
                 if(it != TextToSpeech.ERROR) {
 //                    text2Speech.language = Locale.ENGLISH
                     text2Speech.setOnUtteranceProgressListener(onSpeakListener)
-                    text2Speech.setPitch(0.7f)
-                    text2Speech.setSpeechRate(0.8f)
+//                    text2Speech.setPitch(0.7f)
+//                    text2Speech.setSpeechRate(0.8f)
 
                     val features = HashSet<String>()
                     features.add("female")
@@ -111,7 +110,7 @@ class MainActivity : AppCompatActivity(), OnActivityInteractionListener {
                         for (lang in list) {
                             Log.d(TAG,"voice: lang: $lang")
 
-                            if (lang.name == "en-us-x-sfg#female_1-local") {
+                            if (lang.name == "en-gb-x-fis#female_1-local") {
                                 voice = lang
                                 Log.e(TAG,"voice: ${voice.name}")
                                 break
